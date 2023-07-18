@@ -4,7 +4,7 @@ import psutil
 import shlex
 
 class MicmacNode(desc.CommandLineNode):
-    category = 'Micmac'
+    category = 'MicMac'
 
     inputs = [
         desc.File(
@@ -12,7 +12,7 @@ class MicmacNode(desc.CommandLineNode):
             label='Project Directory',
             description='Project Directory.',
             value="",
-            group="micmac",
+            group='', # required to execute mm3d command line
             uid=[0],
         ),
     ]
@@ -30,19 +30,14 @@ class MicmacNode(desc.CommandLineNode):
     def processChunk(self, chunk):
         try:
             with open(chunk.logFile, 'w') as logF:
-                cmd = self.buildCommandLine(chunk)
-                projectDir = chunk.node._cmdVars['projectDirectoryValue'].replace('"','') # get project directory from parameter (and remove quotes)
+                cmd = self.buildCommandLine(chunk) + ' @ExitOnBrkp @ExitOnWarn @ExitOnNan' # build command line and add MicMac enter key flags
+                projectDir = chunk.node._cmdVars['projectDirectoryValue'].replace('"','')  # get project directory from parameter (and remove quotes)
                 chunk.status.commandLine = cmd
                 chunk.saveStatusFile()
                 print(' - commandLine: {}'.format(cmd))
                 print(' - logFile: {}'.format(chunk.logFile))
                 print(' - projectDir: {}'.format(projectDir))
                 chunk.subprocess = psutil.Popen(shlex.split(cmd), stdout=logF, stderr=logF, cwd=projectDir) # execute in project directory
-
-                # store process static info into the status file
-                # chunk.status.env = node.proc.environ()
-                # chunk.status.createTime = node.proc.create_time()
-
                 chunk.statThread.proc = chunk.subprocess
                 stdout, stderr = chunk.subprocess.communicate()
                 chunk.subprocess.wait()
