@@ -13,14 +13,14 @@ class Tequila(node.MicmacNode):
             label='Project Directory',
             description='Project Directory.',
             value="",
-            group="micmac",
+            group='', # required to execute mm3d command line
             uid=[0],
         ),
         desc.File(
             name='imagePattern',
             label='Image Pattern',
             description='Image Pattern.',
-            group='unnamedParams',
+            group='', # unnamed parameter
             value="",
             uid=[0],
         ),
@@ -28,7 +28,7 @@ class Tequila(node.MicmacNode):
             name='orientationDir',
             label='Orientation Directory',
             description='Orientation directory name.',
-            group='unnamedParams',
+            group='', # unnamed parameter
             value='',
             uid=[0],
         ),
@@ -36,7 +36,7 @@ class Tequila(node.MicmacNode):
             name='plyName',
             label='PLY Name',
             description='Ply filename.',
-            group='unnamedParams',
+            group='', # unnamed parameter
             value='',
             uid=[0],
         ),
@@ -138,6 +138,6 @@ class Tequila(node.MicmacNode):
             label='Point Cloud',
             description='Output PLY point cloud name.',
             value='Tequila.ply',
-            uid=[0],
+            uid=[],
         ),
     ]

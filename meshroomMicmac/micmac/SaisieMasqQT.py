@@ -13,14 +13,14 @@ class SaisieMasqQT(node.MicmacNode):
             label='Project Directory',
             description='Project Directory.',
             value="",
-            group="micmac",
+            group='', # required to execute mm3d command line
             uid=[0],
         ),
         desc.File(
             name='filePath',
             label='File Path',
             description='''Path of the file to open (image or PLY or camera XML).''',
-            group='unnamedParams',
+            group='', # unnamed parameter
             value="",
             uid=[0],
         ),

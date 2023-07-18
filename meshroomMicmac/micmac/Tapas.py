@@ -14,14 +14,14 @@ class Tapas(node.MicmacNode):
             label='Project Directory',
             description='Project Directory.',
             value="",
-            group="micmac",
+            group='', # required to execute mm3d command line
             uid=[0],
         ),
         desc.File(
             name='imagePattern',
             label='Image Pattern',
             description='Image Pattern.',
-            group='unnamedParams',
+            group='', # unnamed parameter
             value="",
             uid=[0],
         ),
@@ -36,7 +36,7 @@ class Tapas(node.MicmacNode):
             name='calibrationModel',
             label='Calibration Model',
             description='Calibration model.',
-            group='unnamedParams',
+            group='', # unnamed parameter
             value='RadialBasic',
             values=['RadialBasic', 'RadialExtended', 'Fraser', 'FishEyeEqui', 'AutoCal', 'Figee', 'HemiEqui', 'RadialStd', 'FraserBasic', 'FishEyeBasic', 'FE_EquiSolBasic', 'Four7x2', 'Four11x2', 'Four15x2', 'Four19x2', 'AddFour7x2', 'AddFour11x2', 'AddFour15x2', 'Four19x2', 'AddPolyDeg0', 'AddPolyDeg1', 'AddPolyDeg2', 'AddPolyDeg3', 'AddPolyDeg4', 'AddPolyDeg5', 'AddPolyDeg6', 'AddPolyDeg7', 'Ebner', 'Brown', 'FishEyeStereo'],
             exclusive=True,
@@ -57,7 +57,7 @@ class Tapas(node.MicmacNode):
             name='Out',
             label='Orientation Directory',
             description="Directory of Output Orientation",
-            uid=[0],
+            uid=[],
             value="Tapas",
         ),
     ]

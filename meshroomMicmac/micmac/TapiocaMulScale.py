@@ -13,14 +13,14 @@ class TapiocaMulScale(node.MicmacNode):
             label='Project Directory',
             description='Project Directory.',
             value="",
-            group="micmac",
+            group='', # required to execute mm3d command line
             uid=[0],
         ),
         desc.File(
             name='imagePattern',
             label='Image Pattern',
             description='Image Pattern.',
-            group='unnamedParams',
+            group='', # unnamed parameter
             value="",
             uid=[0],
         ),
@@ -28,7 +28,7 @@ class TapiocaMulScale(node.MicmacNode):
             name='imageSizeLowResolution',
             label='Image Size Low',
             description='Size of low resolution images.',
-            group='unnamedParams',
+            group='', # unnamed parameter
             value=300,
             range=(-1, 10000, 1),
             uid=[0],
@@ -37,7 +37,7 @@ class TapiocaMulScale(node.MicmacNode):
             name='imageSizeHighResolution',
             label='Image Size High',
             description='Size of high resolution images.',
-            group='unnamedParams',
+            group='', # unnamed parameter
             value=-1,
             range=(-1, 10000, 1),
             uid=[0],
@@ -86,6 +86,6 @@ class TapiocaMulScale(node.MicmacNode):
             label='Homol Directory', # Directory Postfix
             description='Homol Directory.',
             value="Tapioca",
-            uid=[0],
+            uid=[],
         ),
     ]

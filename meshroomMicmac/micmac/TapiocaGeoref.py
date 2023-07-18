@@ -13,14 +13,14 @@ class TapiocaGeoref(node.MicmacNode):
             label='Project Directory',
             description='Project Directory.',
             value="",
-            group="micmac",
+            group='', # required to execute mm3d command line
             uid=[0],
         ),
         desc.File(
             name='imagePattern',
             label='Image Pattern',
             description='Image Pattern.',
-            group='unnamedParams',
+            group='', # unnamed parameter
             value="",
             uid=[0],
         ),
@@ -28,7 +28,7 @@ class TapiocaGeoref(node.MicmacNode):
             name='orientationDir',
             label='Orientation Directory',
             description='Orientation directory name.',
-            group='unnamedParams',
+            group='', # unnamed parameter
             value='',
             uid=[0],
         ),

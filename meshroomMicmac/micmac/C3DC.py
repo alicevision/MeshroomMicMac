@@ -13,7 +13,7 @@ class C3DC(node.MicmacNode):
             label='Project Directory',
             description='Project Directory.',
             value="",
-            group="micmac",
+            group='', # required to execute mm3d command line
             uid=[0],
         ),
         desc.File(
@@ -21,7 +21,7 @@ class C3DC(node.MicmacNode):
             label='Image Pattern',
             description='Image Pattern.',
             value="",
-            group='unnamedParams',
+            group='', # unnamed parameter
             uid=[0],
         ),    
         desc.File(
@@ -35,7 +35,7 @@ class C3DC(node.MicmacNode):
             name='orientationDir',
             label='Orientation Directory',
             description='Orientation directory name.',
-            group='unnamedParams',
+            group='', # unnamed parameter
             value='',
             uid=[0],
         ),
@@ -43,7 +43,7 @@ class C3DC(node.MicmacNode):
             name="mode",
             label="Mode",
             description="Mode.",
-            group='unnamedParams',
+            group='', # unnamed parameter
             value="MicMac",
             values=["Ground", "Statue", "Forest", "TestIGN", "QuickMac", "MicMac", "BigMac", "MTDTmp"],
             exclusive=True,
@@ -122,6 +122,6 @@ class C3DC(node.MicmacNode):
             label='Point Cloud',
             description='Output PLY point cloud name.',
             value='C3DC.ply',
-            uid=[0],
+            uid=[],
         ),
     ]

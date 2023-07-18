@@ -13,14 +13,14 @@ class TapiocaGraph(node.MicmacNode):
             label='Project Directory',
             description='Project Directory.',
             value="",
-            group="micmac",
+            group='', # required to execute mm3d command line
             uid=[0],
         ),
         desc.File(
             name='imagePattern',
             label='Image Pattern',
             description='Image Pattern.',
-            group='unnamedParams',
+            group='', # unnamed parameter
             value="",
             uid=[0],
         ),
@@ -28,7 +28,7 @@ class TapiocaGraph(node.MicmacNode):
             name='imageSize',
             label='Image Size',
             description='Size of image (greater dimension).',
-            group='unnamedParams',
+            group='', # unnamed parameter
             value=-1,
             range=(-1, 16000, 10),
             uid=[0],
@@ -80,6 +80,6 @@ class TapiocaGraph(node.MicmacNode):
             label='Connectivity Graph',
             description='Name of the produced XML file.',
             value="tapioca_connectivity_graph.xml",
-            uid=[0],
+            uid=[],
         ),
     ]

@@ -13,14 +13,14 @@ class TapiocaLine(node.MicmacNode):
             label='Project Directory',
             description='Project Directory.',
             value="",
-            group="micmac",
+            group='', # required to execute mm3d command line
             uid=[0],
         ),
         desc.File(
             name='imagePattern',
             label='Image Pattern',
             description='Image Pattern.',
-            group='unnamedParams',
+            group='', # unnamed parameter
             value="",
             uid=[0],
         ),
@@ -28,7 +28,7 @@ class TapiocaLine(node.MicmacNode):
             name='imageSize',
             label='Image Size',
             description='Size of image.',
-            group='unnamedParams',
+            group='', # unnamed parameter
             value=-1,
             range=(-1, 16000, 10),
             uid=[0],
@@ -37,7 +37,7 @@ class TapiocaLine(node.MicmacNode):
             name='nbAdjacentImages',
             label='Nb Adjacent Images',
             description='Number of adjacent images to look for.',
-            group='unnamedParams',
+            group='', # unnamed parameter
             value=5,
             range=(1, 100, 1),
             uid=[0],
@@ -93,6 +93,6 @@ class TapiocaLine(node.MicmacNode):
             label='Homol Directory', # Directory Postfix
             description='Homol Directory.',
             value="Tapioca",
-            uid=[0],
+            uid=[],
         ),
     ]

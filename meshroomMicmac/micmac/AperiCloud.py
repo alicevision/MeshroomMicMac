@@ -13,14 +13,14 @@ class AperiCloud(node.MicmacNode):
             label='Project Directory',
             description='Project Directory.',
             value="",
-            group="micmac",
+            group='', # required to execute mm3d command line
             uid=[0],
         ),
         desc.File(
             name='imagePattern',
             label='Image Pattern',
             description='Image Pattern.',
-            group='unnamedParams',
+            group='', # unnamed parameter
             value="",
             uid=[0],
         ),
@@ -35,7 +35,7 @@ class AperiCloud(node.MicmacNode):
             name='orientationDir',
             label='Orientation Directory',
             description='Orientation directory name.',
-            group='unnamedParams',
+            group='', # unnamed parameter
             value="",
             uid=[0],
         ),
@@ -136,6 +136,6 @@ class AperiCloud(node.MicmacNode):
             label='Point Cloud',
             description='Output PLY point cloud name.',
             value='AperiCloud.ply',
-            uid=[0],
+            uid=[],
         ),
     ]

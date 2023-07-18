@@ -5,8 +5,8 @@ import os
 import shutil
 import json
 
-class Micmac(desc.Node):
-    category = 'Micmac'
+class MicMac(desc.Node):
+    category = 'MicMac'
     documentation = '''Project node for Micmac pipeline. Copy CameraInit images into the node folder.'''
 
     inputs = [
@@ -14,7 +14,7 @@ class Micmac(desc.Node):
             name='input',
             label='SfMData',
             description='SfMData file.',
-            value='',
+            value="",
             uid=[0],
         ),   
         desc.ChoiceParam(
@@ -33,7 +33,7 @@ class Micmac(desc.Node):
             name='projectDirectory',
             label='Project Directory',
             description='Project Directory.',
-            group='micmac',
+            group='',  # required to execute mm3d command line
             value=os.path.join(desc.Node.internalFolder, 'project'),
             uid=[],
         ),

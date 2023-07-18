@@ -14,14 +14,14 @@ class Tawny(node.MicmacNode):
             label='Project Directory',
             description='Project Directory.',
             value="",
-            group="micmac",
+            group='', # required to execute mm3d command line
             uid=[0],
         ),
         desc.File(
             name='dataDirectory',
             label='Data Directory',
             description="Data directory",
-            group='unnamedParams',
+            group='', # unnamed parameter
             uid=[0],
             value="",
         ),
@@ -171,7 +171,7 @@ class Tawny(node.MicmacNode):
             name='Out',
             label='Out',
             description="Name of output file (in the folder)",
-            uid=[0],
+            uid=[],
             value="Tawny",
         ),
     ]
