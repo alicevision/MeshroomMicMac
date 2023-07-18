@@ -128,7 +128,7 @@ for cmdLineArg in cmdLineArgs:
     
     if isUnnamed:
         paramStr += """
-        group='unnamedParams',"""
+            group='', # unnamed parameter"""
 
     if argType == 'bool':
         argStr="""
@@ -145,7 +145,7 @@ for cmdLineArg in cmdLineArgs:
         desc.StringParam({params}
             value="",
         ),""".format(params=paramStr)
-    elif argType == 'int':
+    elif argType == 'int' or argType == 'size_t':
         argStr = """
         desc.IntParam({params}
             value=0,
@@ -309,6 +309,8 @@ for cmdLineArg in cmdLineArgs:
     else:
         inputNodeStr += argStr
 
+outputNodeStr = re.sub('(uid=[0])', lambda m: 'uid=[]', outputNodeStr) # remove uid for output parameters
+
 fileStr = '''__version__ = "0.0"
 
 import sys
@@ -318,6 +320,7 @@ from meshroomMicmac.custom import node
 class {nodeName}(node.MicmacNode):
     commandLine = '{cmd} {allParams}'
     documentation = '{nodeName}'
+    category = 'MicMac'
 
     inputs = [
         desc.File(
@@ -325,7 +328,7 @@ class {nodeName}(node.MicmacNode):
             label='Project Directory',
             description='Project Directory.',
             value="",
-            group="micmac",
+            group='', # required to execute mm3d command line
             uid=[0],
         ),{inputNodes}
     ]
