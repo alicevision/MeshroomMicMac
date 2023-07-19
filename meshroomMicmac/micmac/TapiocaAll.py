@@ -4,7 +4,7 @@ from meshroom.core import desc
 from meshroomMicmac.custom import node
 
 class TapiocaAll(node.MicmacNode):
-    commandLine = 'mm3d Tapioca All {imagePatternValue} {imageSizeValue} {allParams}'
+    commandLine = 'mm3d Tapioca All {imagePatternValue} {imageSizeValue} {allParams} {wallisFilterValue}'
     documentation = '''Tapioca All'''
 
     inputs = [
@@ -20,22 +20,48 @@ class TapiocaAll(node.MicmacNode):
             name='imagePattern',
             label='Image Pattern',
             description='Image Pattern.',
-            value='.*.(jpg|jpeg|JPG|png|PNG|tif|tiff|TIF|TIFF|arw|ARW|crw|CRW|nef|NEF)',
+            value='.*.(jpg|jpeg|JPG|JPEG|png|PNG|tif|tiff|TIF|TIFF)',
             group='', # unnamed parameter
             uid=[0],
         ),    
+        desc.File(
+            name='Pat2',
+            label='Second Image Pattern',
+            description="Second image pattern.",
+            uid=[0],
+            value="",
+            advanced=True,
+        ),
         desc.IntParam(
             name='imageSize',
             label='Image Size',
             description='Size of image.',
             group='', # unnamed parameter
-            value=-1,
-            range=(-1, 16000, 10),
+            value=1000,
+            range=(-1, 50000, 10),
             uid=[0],
         ),
         desc.BoolParam(
+            name='setByP',
+            label='Set ByP',
+            description='Set ByP.', 
+            value=False,
+            uid=[0],
+            group='',
+        ),
+        desc.IntParam(
+            name='ByP',
+            label='By P',
+            description='By process.',
+            enabled=lambda node: node.setByP.value,
+            value=-1,
+            range=(-1, 64, 1),
+            uid=[0],
+            advanced=True,
+        ),
+        desc.BoolParam(
             name='ExpTxt',
-            label='Export Files In Txt',
+            label='Tie Points In Txt',
             description='Export files in text format (if false binary).', 
             value=False,
             uid=[0],
@@ -46,6 +72,7 @@ class TapiocaAll(node.MicmacNode):
             description='No max.', 
             value=False,
             uid=[0],
+            advanced=True,
         ),
         desc.BoolParam(
             name='NoMin',
@@ -53,13 +80,7 @@ class TapiocaAll(node.MicmacNode):
             description='No min.', 
             value=False,
             uid=[0],
-        ),
-        desc.BoolParam(
-            name='NoUnknown',
-            label='No Unknown',
-            description='No unknown.', 
-            value=False,
-            uid=[0],
+            advanced=True,
         ),
         desc.FloatParam(
             name='Ratio',
@@ -68,6 +89,18 @@ class TapiocaAll(node.MicmacNode):
             value=0.6,
             range=(0.1, 1.0, 0.1),
             uid=[0],
+            advanced=True,
+        ),
+        desc.ChoiceParam(
+            name="wallisFilter",
+            label="Wallis Filter",
+            description="Apply Wallis filter.",
+            group='', # keys
+            value="",
+            values=["", "@SFS"],
+            exclusive=True,
+            uid=[0],
+            advanced=True,
         ),
     ]
 
@@ -76,7 +109,7 @@ class TapiocaAll(node.MicmacNode):
             name='PostFix',
             label='Homol Directory', # Directory Postfix
             description='Homol Directory.',
-            value="Tapioca",
+            value="All",
             uid=[],
         ),
     ]
