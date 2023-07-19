@@ -162,7 +162,7 @@ for cmdLineArg in cmdLineArgs:
         desc.ListAttribute({params}
             elementDesc=desc.StringParam(
                 name="{name}Item",
-                label="{label} item",
+                label="{label} Item",
                 description="{description}",
                 value='',
                 uid=[0],
@@ -173,7 +173,7 @@ for cmdLineArg in cmdLineArgs:
         desc.ListAttribute({params}
             elementDesc=desc.FloatParam(
                 name="{name}Item",
-                label="{label} item",
+                label="{label} Item",
                 description="{description}",
                 value=0.0,
                 range=(-float('inf'), float('inf'), 0.01),
