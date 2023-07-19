@@ -157,7 +157,7 @@ for cmdLineArg in cmdLineArgs:
             value=0.0,
             range=(-float('inf'), float('inf'), 0.01),
         ),""".format(params=paramStr)
-    elif argType == 'vector<std::string>':
+    elif argType == 'vector<string>':
         argStr = """
         desc.ListAttribute({params}
             elementDesc=desc.StringParam(
