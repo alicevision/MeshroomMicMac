@@ -25,6 +25,7 @@ class MicmacNode(desc.CommandLineNode):
         cmdline = re.sub('(True|False)', lambda m: str(int(m.group(1) == 'True')), cmdline)   # use 0 / 1 instead of False / True
         cmdline = re.sub('--(\w+)\s', lambda m: '{name}='.format(name=m.group(1)), cmdline)   # use "name=value" instead of "--name value"
         cmdline = re.sub('(\w+=\"\"\s)', lambda m: '', cmdline)                               # remove value with empty string (optional parameter)
+        cmdline = re.sub('(\w+=\[\])', lambda m: '', cmdline)                                   # remove value with empty list (optional parameter)
         return cmdline
     
     def processChunk(self, chunk):
