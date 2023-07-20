@@ -309,7 +309,7 @@ for cmdLineArg in cmdLineArgs:
     else:
         inputNodeStr += argStr
 
-outputNodeStr = re.sub('(uid=[0])', lambda m: 'uid=[]', outputNodeStr) # remove uid for output parameters
+outputNodeStr = re.sub('(uid=\[0\])', lambda m: 'uid=[]', outputNodeStr) # remove uid for output parameters
 
 fileStr = '''__version__ = "0.0"
 
