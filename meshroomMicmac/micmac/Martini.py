@@ -96,7 +96,22 @@ class Martini(node.MicmacNode):
             range=(1, 20, 1),
             uid=[0],
         ),
+        desc.StringParam(
+            name='OriOut',
+            label='Output Orientation Name',
+            description="Directory of Output Orientation",
+            value="Martini",
+            uid=[0],
+        ),
     ]
 
     outputs = [
+        desc.File(
+            name='orientationDirectory',
+            label='Orientation Directory',
+            description="Directory of Output Orientation",
+            value="{OriOutValue}",
+            group='', # not a command line parameter
+            uid=[],
+        ),
     ]
