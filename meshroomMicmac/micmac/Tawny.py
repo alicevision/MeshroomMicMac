@@ -18,9 +18,9 @@ class Tawny(node.MicmacNode):
             uid=[0],
         ),
         desc.File(
-            name='dataDirectory',
-            label='Data Directory',
-            description="Data directory",
+            name='orthoDirectory',
+            label='Ortho Directory',
+            description="Ortho directory",
             group='', # unnamed parameter
             uid=[0],
             value="",
@@ -39,13 +39,25 @@ class Tawny(node.MicmacNode):
             uid=[0],
             value=1,
             range=(-sys.maxsize, sys.maxsize, 1),
+            advanced=True,
+        ),
+        desc.BoolParam(
+            name='setDEqXY',
+            label='Set DEqXY',
+            description="Set DEqXY.",
+            uid=[0],
+            value=False,
+            group='',
+            advanced=True,
         ),
         desc.GroupAttribute(
             name='DEqXY',
-            label='D Eq X Y',
+            label='DEqXY',
             description="Degree of equalization, if diff in X and Y",
             brackets='[]',
             joinChar=',',
+            enabled=lambda node: node.setDEqXY.value,
+            advanced=True,
             groupDesc=[
             desc.IntParam(
                 name="x",
@@ -70,6 +82,7 @@ class Tawny(node.MicmacNode):
             description="Add unknown constant for equalization",
             uid=[0],
             value=False,
+            advanced=True,
         ),
         desc.IntParam(
             name='DegRap',
@@ -78,6 +91,16 @@ class Tawny(node.MicmacNode):
             uid=[0],
             value=0,
             range=(-sys.maxsize, sys.maxsize, 1),
+            advanced=True,
+        ),
+        desc.BoolParam(
+            name='setDegRapXY',
+            label='Set DegRapXY',
+            description="Set DegRapXY.",
+            uid=[0],
+            value=False,
+            group='',
+            advanced=True,
         ),
         desc.GroupAttribute(
             name='DegRapXY',
@@ -85,6 +108,8 @@ class Tawny(node.MicmacNode):
             description="Degree of rappel to initial values",
             brackets='[]',
             joinChar=',',
+            enabled=lambda node: node.DegRapXY.value,
+            advanced=True,
             groupDesc=[
             desc.IntParam(
                 name="x",
@@ -109,6 +134,7 @@ class Tawny(node.MicmacNode):
             description="Rappel glob on physically equalized",
             uid=[0],
             value=True,
+            advanced=True,
         ),
         desc.FloatParam(
             name='DynG',
@@ -117,6 +143,7 @@ class Tawny(node.MicmacNode):
             uid=[0],
             value=0.0,
             range=(-float('inf'), float('inf'), 0.01),
+            advanced=True,
         ),
         desc.StringParam(
             name='ImPrio',
@@ -124,6 +151,7 @@ class Tawny(node.MicmacNode):
             description="Pattern of image with high prio",
             uid=[0],
             value=".*",
+            advanced=True,
         ),
         desc.IntParam(
             name='SzV',
@@ -132,6 +160,7 @@ class Tawny(node.MicmacNode):
             uid=[0],
             value=1,
             range=(-sys.maxsize, sys.maxsize, 1),
+            advanced=True,
         ),
         desc.FloatParam(
             name='CorThr',
@@ -140,6 +169,7 @@ class Tawny(node.MicmacNode):
             uid=[0],
             value=0.7,
             range=(-float('inf'), float('inf'), 0.01),
+            advanced=True,
         ),
         desc.FloatParam(
             name='NbPerIm',
@@ -148,6 +178,7 @@ class Tawny(node.MicmacNode):
             uid=[0],
             value=1e4,
             range=(-float('inf'), float('inf'), 0.01),
+            advanced=True,
         ),
         desc.BoolParam(
             name='L1F',
@@ -155,6 +186,7 @@ class Tawny(node.MicmacNode):
             description="Do L1 Filter on couple",
             uid=[0],
             value=True,
+            advanced=True,
         ),
         desc.FloatParam(
             name='SatThresh',
@@ -163,15 +195,16 @@ class Tawny(node.MicmacNode):
             uid=[0],
             value=0.0,
             range=(-float('inf'), float('inf'), 0.01),
+            advanced=True,
         ),
     ]
 
     outputs = [
         desc.File(
             name='Out',
-            label='Out',
+            label='Orthophoto',
             description="Name of output file (in the folder)",
             uid=[],
-            value="Tawny",
+            value="Orthophotomosaic.tif",
         ),
     ]
