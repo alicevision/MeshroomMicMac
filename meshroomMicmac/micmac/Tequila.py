@@ -24,7 +24,7 @@ class Tequila(node.MicmacNode):
             value="",
             uid=[0],
         ),
-        desc.StringParam(
+        desc.File(
             name='orientationDir',
             label='Orientation Directory',
             description='Orientation directory name.',
@@ -32,10 +32,10 @@ class Tequila(node.MicmacNode):
             value='',
             uid=[0],
         ),
-        desc.StringParam(
+        desc.File(
             name='plyName',
-            label='PLY Name',
-            description='Ply filename.',
+            label='Mesh',
+            description='PLY Mesh filename.',
             group='', # unnamed parameter
             value='',
             uid=[0],
@@ -46,6 +46,7 @@ class Tequila(node.MicmacNode):
             description='Write PLY in binary mode.', 
             value=True,
             uid=[0],
+            advanced=True,
         ),
         desc.BoolParam(
             name='Optim',
@@ -53,6 +54,7 @@ class Tequila(node.MicmacNode):
             description='Graph-cut optimization.', 
             value=False,
             uid=[0],
+            advanced=True,
         ),
         desc.FloatParam(
             name='Lambda',
@@ -61,6 +63,7 @@ class Tequila(node.MicmacNode):
             value=0.01,
             range=(0.0, 10.0, 0.01),
             uid=[0],
+            advanced=True,
         ),
         desc.IntParam(
             name='Iter',
@@ -69,6 +72,7 @@ class Tequila(node.MicmacNode):
             value=2,
             range=(0, 20, 1),
             uid=[0],
+            advanced=True,
         ),
         desc.BoolParam(
             name='Filter',
@@ -76,10 +80,11 @@ class Tequila(node.MicmacNode):
             description='Remove border faces.', 
             value=False,
             uid=[0],
+            advanced=True,
         ),
         desc.IntParam(
             name='Sz',
-            label='Sz',
+            label='Texture Size',
             description='Texture max size.',
             value=8192,
             range=(100, 16000, 1),
@@ -92,6 +97,7 @@ class Tequila(node.MicmacNode):
             value=2,
             range=(0, 10, 1),
             uid=[0],
+            advanced=True,
         ),
         desc.BoolParam(
             name='ZBufCache',
@@ -99,10 +105,11 @@ class Tequila(node.MicmacNode):
             description='ZBuffer cache (if True: a little faster, more memory).',
             value=False,
             uid=[0],
+            advanced=True,
         ),
         desc.IntParam(
             name='QUAL',
-            label='Qual',
+            label='Quality',
             description='jpeg compression quality.',
             value=70,
             range=(10, 100, 1),
@@ -115,27 +122,34 @@ class Tequila(node.MicmacNode):
             value=90.0,
             range=(0.0, 360.0, 0.01),
             uid=[0],
+            advanced=True,
         ),
-        desc.StringParam(
-            name='Mode',
-            label='Mode',
-            description='Mode.',
-            value='Pack',
+        desc.ChoiceParam(
+            name="Mode",
+            label="Mode",
+            description="Mode.",
+            value="Basic",
+            values=["Basic", "Pack"],
+            exclusive=True,
             uid=[0],
+            advanced=True,
         ),
-        desc.StringParam(
-            name='Crit',
-            label='Crit',
-            description='Texture choosing criterion.',
-            value='Angle',
+        desc.ChoiceParam(
+            name="Crit",
+            label="Crit",
+            description="Texture choosing criterion.",
+            value="Angle",
+            values=["Angle", "Stretch", "AAngle"],
+            exclusive=True,
             uid=[0],
+            advanced=True,
         ),
     ]
 
     outputs = [
         desc.File(
             name='Out',
-            label='Point Cloud',
+            label='Textured Mesh',
             description='Output PLY point cloud name.',
             value='Tequila.ply',
             uid=[],
