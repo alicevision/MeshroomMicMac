@@ -37,6 +37,7 @@ class TiPunch(node.MicmacNode):
             description='Write PLY in binary mode.', 
             value=True,
             uid=[0],
+            advanced=True,
         ),
         desc.IntParam(
             name='Depth',
@@ -50,8 +51,9 @@ class TiPunch(node.MicmacNode):
             name='Rm',
             label='Rm',
             description='Remove intermediary Poisson mesh.', 
-            value=False,
+            value=True,
             uid=[0],
+            advanced=True,
         ),
         desc.BoolParam(
             name='Filter',
@@ -60,11 +62,13 @@ class TiPunch(node.MicmacNode):
             value=True,
             uid=[0],
         ),
-        desc.StringParam(
-            name='Mode',
-            label='Mode',
-            description='C3DC mode.',
-            value='Statue',
+        desc.ChoiceParam(
+            name="Mode",
+            label="Mode",
+            description="C3DC Mode.",
+            value="QuickMac",
+            values=["Ground", "Statue", "Forest", "QuickMac", "MicMac", "BigMac"],
+            exclusive=True,
             uid=[0],
         ),
         desc.IntParam(
@@ -81,14 +85,15 @@ class TiPunch(node.MicmacNode):
             description='Filter from border.', 
             value=True,
             uid=[0],
+            advanced=True,
         ),
     ]
 
     outputs = [
         desc.File(
             name='Out',
-            label='Point Cloud',
-            description='Output PLY point cloud name.',
+            label='Mesh',
+            description='Output PLY mesh name.',
             value='TiPunch.ply',
             uid=[],
         ),
